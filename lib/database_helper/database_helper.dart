@@ -85,6 +85,18 @@ _initDatabase() async {
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
   }
+  Future<int> removeFavorite(DictionaryModel dm) async {
+    // Get a reference to the database.
+    final db = await database;
+
+    return await db.update(
+      'Dictionary',
+      dm.toMap(),
+      where: 'id = ?',
+      whereArgs: [dm.id],
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
+  }
 
   Future<List<DictionaryModel>> getWords() async {
     final db = await database;

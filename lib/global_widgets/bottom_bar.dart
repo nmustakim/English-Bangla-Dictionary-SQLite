@@ -3,6 +3,7 @@ import 'package:e2b_dictionary/screens/favourites.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../controller/favorite_controller.dart';
 import '../controller/settings_controller.dart';
 import '../screens/settings.dart';
 
@@ -17,7 +18,7 @@ class BottomBar extends StatefulWidget {
 
 class _BottomBarState extends State<BottomBar> {
   final controller = Get.put(SettingsController());
-
+  final favoriteController = Get.put(FavoriteController());
   int _selectedIndex = 0;
 
   @override

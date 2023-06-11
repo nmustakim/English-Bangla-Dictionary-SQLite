@@ -1,3 +1,4 @@
+import 'package:e2b_dictionary/controller/favorite_controller.dart';
 import 'package:e2b_dictionary/screens/word_details.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -26,6 +27,7 @@ class _DictionaryHomeState extends State<DictionaryHome> {
     wordsList = [];
     wordsListContainer = [];
     fetchWordsList();
+
 
     super.initState();
   }

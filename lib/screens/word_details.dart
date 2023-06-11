@@ -1,3 +1,4 @@
+import 'package:e2b_dictionary/controller/favorite_controller.dart';
 import 'package:e2b_dictionary/global_widgets/bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -35,15 +36,10 @@ class _WordDetailsState extends State<WordDetails> {
     super.initState();
   }
 
-  void updateFavoriteStatus() async {
-    DictionaryModel dm = DictionaryModel(id:widget.id,
-        word:widget.word, meaning: widget.meaning, partsOfSpeech: widget.partsOfSpeech,example: widget.example,isFavorite:widget.favorite);
-    await _databaseHelper!.addFavorite(dm);
-
-  }
 
   @override
   Widget build(BuildContext context) {
+    final FavoriteController favoriteController = Get.find();
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
@@ -57,10 +53,13 @@ class _WordDetailsState extends State<WordDetails> {
         ),
         actions: [Padding(
           padding: const EdgeInsets.all(8),
-          child: InkWell(onTap:(){setState(() {
-           widget.favorite == 1 ? widget.favorite = 0 : widget.favorite = 1;
-           updateFavoriteStatus();
-          });},child:widget.favorite == 1 ? const Icon(Icons.favorite_border_sharp ,size: 40,color: Colors.red,): const Icon(Icons.favorite_sharp,size: 40,color: Colors.red)),
+          child: InkWell(onTap:()async{
+
+
+           await favoriteController.addFavorite(DictionaryModel(word: widget.word, meaning: widget.meaning, partsOfSpeech: widget.partsOfSpeech, example: widget.example,id:widget.id,isFavorite:0 ));
+          await favoriteController.getWords();
+           await favoriteController.getFavorites();
+          },child:widget.favorite == 1 ? const Icon(Icons.favorite_border_sharp ,size: 40,color: Colors.red,): const Icon(Icons.favorite_sharp,size: 40,color: Colors.red)),
         ),],
       ),
       body: SafeArea(

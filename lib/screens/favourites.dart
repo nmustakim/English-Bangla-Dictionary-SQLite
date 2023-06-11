@@ -1,3 +1,4 @@
+import 'package:e2b_dictionary/controller/favorite_controller.dart';
 import 'package:e2b_dictionary/screens/word_details.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,15 +18,10 @@ class _FavoritesState extends State<Favorites> {
   final searchController = TextEditingController();
 
   int? selectedId;
-  DatabaseHelper? _databaseHelper;
-  List<DictionaryModel>? wordsList;
-  List<DictionaryModel>? wordsListContainer;
+
   @override
   void initState() {
 
-      _databaseHelper = DatabaseHelper();
-      wordsList = [];
-      wordsListContainer = [];
       fetchFavoritesList();
 
 
@@ -34,10 +30,9 @@ class _FavoritesState extends State<Favorites> {
 
   void fetchFavoritesList() async {
     try {
-      wordsListContainer = await _databaseHelper!.getWords();
-      setState(() {
-        wordsList!.addAll(wordsListContainer!.where((p) => p.isFavorite == 0));
-      });
+      final FavoriteController favoriteController = Get.find();
+      await favoriteController.getWords();
+      await favoriteController.getFavorites();
 
     } catch (error) {
       ScaffoldMessenger.of(context)
@@ -45,25 +40,26 @@ class _FavoritesState extends State<Favorites> {
     }
   }
 
-  void runFilter(String enteredString) {
-    if (enteredString.isEmpty) {
-      setState(() {
-        wordsList = wordsListContainer!;
-      });
-    } else {
-      setState(() {
-        wordsList = wordsListContainer!
-            .where((element) => element.word
-            .toLowerCase()
-            .contains(enteredString.toLowerCase()))
-            .toList();
-      });
-    }
-  }
+  // void runFilter(String enteredString) {
+  //   if (enteredString.isEmpty) {
+  //     setState(() {
+  //
+  //     });
+  //   } else {
+  //     setState(() {
+  //
+  //           .where((element) => element.word
+  //           .toLowerCase()
+  //           .contains(enteredString.toLowerCase()))
+  //           .toList();
+  //     });
+  //   }
+  // }
   final SettingsController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
+    final FavoriteController favoriteController = Get.find();
     return Scaffold(
       appBar: AppBar(backgroundColor:kPrimaryColor,elevation:0 ,centerTitle: true,title: const Text('Favorites',style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),),),
       extendBody: true,
@@ -83,7 +79,7 @@ class _FavoritesState extends State<Favorites> {
                       height: 41,
                       child: TextField(
                         textAlign: TextAlign.center,
-                        onChanged: (v) => runFilter(v),
+                        // onChanged: (v) => runFilter(v),
                         controller: searchController,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
@@ -95,13 +91,13 @@ class _FavoritesState extends State<Favorites> {
                       ),
                     ),
                   ),
-                  IconButton(
-                      onPressed: () => runFilter(searchController.text),
-                      icon: const Icon(
-                        Icons.search,
-                        color: Colors.white,
-                        size: 35,
-                      )),
+                  // IconButton(
+                  //     // onPressed: () => runFilter(searchController.text),
+                  //     icon: const Icon(
+                  //       Icons.search,
+                  //       color: Colors.white,
+                  //       size: 35,
+                  //     )),
                   const SizedBox(
                     width: 10,
                   )
@@ -113,10 +109,10 @@ class _FavoritesState extends State<Favorites> {
               padding: const EdgeInsets.only(top: 20),
               height: MediaQuery.of(context).size.height/1.1,
               decoration: const BoxDecoration(color:Colors.white,borderRadius: BorderRadius.only(topRight: Radius.circular(30),topLeft: Radius.circular(30))),
-              child: ListView.builder(
-                  itemCount: wordsList!.length,
+              child:Obx(() =>  ListView.builder(
+                  itemCount: favoriteController.favorites.length,
                   itemBuilder: (context, index) {
-                    DictionaryModel newWord = wordsList![index];
+                    DictionaryModel newWord = favoriteController.favorites[index];
                     return Card(
                       margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 2),
                       elevation: 5,
@@ -144,7 +140,7 @@ class _FavoritesState extends State<Favorites> {
                     ),
                       )
                     );
-                  }),
+                  })),
             )
           ],
         ),

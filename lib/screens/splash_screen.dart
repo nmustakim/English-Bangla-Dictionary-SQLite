@@ -55,7 +55,7 @@ class _SplashScreenState extends State<SplashScreen> {
                       fontWeight: FontWeight.bold),
                 ),
               )),
-          const Positioned(left: 60,top: 250,child: Text('Meaning | Parts of speech | example',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),))
+          const Positioned(left: 60,top: 250,child: Text('Meaning | Parts of speech | example',style: TextStyle(color:Colors.black,fontSize: 16,fontWeight: FontWeight.bold),))
         ],
       ),
     );
