@@ -9,31 +9,23 @@ import '../models/dictionary_model.dart';
 class DatabaseHelper {
   Database? _database;
 
-
   Future<Database> get database async => _database ??= await _initDatabase();
-_initDatabase() async {
+  _initDatabase() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     String path = join(documentsDirectory.path, 'dictionary.db');
     var exists = await databaseExists(path);
 
-    if(!exists) {
-
-        await Directory(dirname(path)).create(recursive: true);
-
+    if (!exists) {
+      await Directory(dirname(path)).create(recursive: true);
 
       ByteData data = await rootBundle.load(join("assets", "dictionary.db"));
-      List <int> bytes = data.buffer.asUint8List(
-          data.offsetInBytes, data.lengthInBytes);
+      List<int> bytes =
+          data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
 
       await File(path).writeAsBytes(bytes, flush: true);
     }
- return _database = await openDatabase(path,version: 1);
-
-    }
-
-
-
-
+    return _database = await openDatabase(path, version: 1);
+  }
 
   // Future _onCreate(Database db, int version) async {
   //   await db.execute('''
@@ -71,38 +63,20 @@ _initDatabase() async {
   //   this._db = await openDatabase(dbPathEnglish);
   // }
 
+  //
 
-
-  Future<int> addFavorite(DictionaryModel dm) async {
-    // Get a reference to the database.
+  Future<int> update(DictionaryModel dm) async {
     final db = await database;
-
-    return await db.update(
-      'Dictionary',
-      dm.toMap(),
-      where: 'id = ?',
-      whereArgs: [dm.id],
-      conflictAlgorithm: ConflictAlgorithm.replace,
-    );
-  }
-  Future<int> removeFavorite(DictionaryModel dm) async {
-    // Get a reference to the database.
-    final db = await database;
-
-    return await db.update(
-      'Dictionary',
-      dm.toMap(),
-      where: 'id = ?',
-      whereArgs: [dm.id],
-      conflictAlgorithm: ConflictAlgorithm.replace,
-    );
+    return await db.update("Dictionary", dm.toMap(),
+        where: 'id = ?',
+        whereArgs: [dm.id],
+        conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
   Future<List<DictionaryModel>> getWords() async {
     final db = await database;
 
     final List<Map<String, dynamic>> maps = await db.query('Dictionary');
-
 
     return List.generate(maps.length, (i) {
       return DictionaryModel(
@@ -112,10 +86,6 @@ _initDatabase() async {
           partsOfSpeech: maps[i]['partsOfSpeech'],
           example: maps[i]['example'],
           isFavorite: maps[i]['isFavorite']);
-
     });
   }
-
-
-
 }

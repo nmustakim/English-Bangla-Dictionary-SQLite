@@ -1,4 +1,4 @@
-import 'package:e2b_dictionary/controller/favorite_controller.dart';
+import 'package:e2b_dictionary/controller/dictionary_controller.dart';
 import 'package:e2b_dictionary/global_widgets/bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,19 +9,9 @@ import '../database_helper/database_helper.dart';
 import '../models/dictionary_model.dart';
 
 class WordDetails extends StatefulWidget {
-  final String word;
-  final int id;
-   int favorite;
- WordDetails(
-      {super.key,
-      required this.word,
-      required this.meaning,
-      required this.partsOfSpeech,
-      required this.example, required this.id, required this.favorite});
+  final DictionaryModel dictionaryModel;
 
-  final String meaning;
-  final String partsOfSpeech;
-  final String example;
+  const WordDetails({super.key, required this.dictionaryModel});
 
   @override
   State<WordDetails> createState() => _WordDetailsState();
@@ -36,31 +26,55 @@ class _WordDetailsState extends State<WordDetails> {
     super.initState();
   }
 
-
   @override
   Widget build(BuildContext context) {
-    final FavoriteController favoriteController = Get.find();
+    final DictionaryController dictionaryController = Get.find();
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kPrimaryColor,
         elevation: 0,
         centerTitle: true,
-
-        title:  Text(
+        title: Text(
           'Word details',
-          style: TextStyle(fontSize: ctrl.titleFontSize.toDouble(), fontWeight: FontWeight.bold),
+          style: TextStyle(
+              fontSize: ctrl.titleFontSize.toDouble(),
+              fontWeight: FontWeight.bold),
         ),
-        actions: [Padding(
-          padding: const EdgeInsets.all(8),
-          child: InkWell(onTap:()async{
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8),
+            child: InkWell(
+              onTap: () async {
+                int newIsFavorite = widget.dictionaryModel.isFavorite == 1 ||
+                        widget.dictionaryModel.isFavorite == null
+                    ? 0
+                    : 1;
+                DictionaryModel updatedModel = DictionaryModel(
+                  id: widget.dictionaryModel.id,
+                  word: widget.dictionaryModel.word,
+                  meaning: widget.dictionaryModel.meaning,
+                  partsOfSpeech: widget.dictionaryModel.partsOfSpeech,
+                  example: widget.dictionaryModel.example,
+                  isFavorite: newIsFavorite,
+                );
+                await _databaseHelper?.update(updatedModel);
+                dictionaryController.favorites.clear();
+                await dictionaryController.getWords();
+                await dictionaryController.getFavorites();
 
-
-           await favoriteController.addFavorite(DictionaryModel(word: widget.word, meaning: widget.meaning, partsOfSpeech: widget.partsOfSpeech, example: widget.example,id:widget.id,isFavorite:0 ));
-          await favoriteController.getWords();
-           await favoriteController.getFavorites();
-          },child:widget.favorite == 1 ? const Icon(Icons.favorite_border_sharp ,size: 40,color: Colors.red,): const Icon(Icons.favorite_sharp,size: 40,color: Colors.red)),
-        ),],
+                setState(() {
+                  widget.dictionaryModel.isFavorite = newIsFavorite;
+                });
+              },
+              child: widget.dictionaryModel.isFavorite == 1
+                  ? const Icon(Icons.favorite_border_sharp,
+                      size: 40, color: Colors.red)
+                  : const Icon(Icons.favorite_sharp,
+                      size: 40, color: Colors.red),
+            ),
+          ),
+        ],
       ),
       body: SafeArea(
         child: Stack(
@@ -73,8 +87,8 @@ class _WordDetailsState extends State<WordDetails> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    widget.word,
-                    style:  TextStyle(
+                    widget.dictionaryModel.word,
+                    style: TextStyle(
                         fontSize: ctrl.titleFontSize.toDouble(),
                         fontWeight: FontWeight.bold,
                         color: Colors.white),
@@ -100,7 +114,7 @@ class _WordDetailsState extends State<WordDetails> {
                       height: 50,
                     ),
                     Text(
-                      widget.meaning,
+                      widget.dictionaryModel.meaning,
                       style: TextStyle(
                           fontSize: ctrl.bodyFontSize.toDouble(),
                           fontWeight: FontWeight.bold,
@@ -109,16 +123,17 @@ class _WordDetailsState extends State<WordDetails> {
                     const SizedBox(
                       height: 25,
                     ),
-                    Text('Parts of speech: ${widget.partsOfSpeech.toUpperCase()}',
-                        style:  TextStyle(
+                    Text(
+                        'Parts of speech: ${widget.dictionaryModel.partsOfSpeech.toUpperCase()}',
+                        style: TextStyle(
                             fontSize: ctrl.bodyFontSize.toDouble(),
                             fontWeight: FontWeight.bold,
                             color: Colors.black)),
                     const SizedBox(
                       height: 25,
                     ),
-                    Text('Example: ${widget.example}',
-                        style:  TextStyle(
+                    Text('Example: ${widget.dictionaryModel.example}',
+                        style: TextStyle(
                             fontSize: ctrl.bodyFontSize.toDouble(),
                             fontWeight: FontWeight.bold,
                             color: Colors.black))

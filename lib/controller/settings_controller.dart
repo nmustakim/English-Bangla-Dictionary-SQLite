@@ -4,7 +4,6 @@ class SettingsController extends GetxController {
   var titleFontSize = 30.obs;
   var bodyFontSize = 16.obs;
 
-
   void titleFontIncrement() {
     if (titleFontSize < 35) {
       titleFontSize++;
@@ -21,7 +20,6 @@ class SettingsController extends GetxController {
     update();
   }
 
-
   void bodyFontIncrement() {
     if (bodyFontSize < 16) {
       bodyFontSize++;
@@ -34,7 +32,4 @@ class SettingsController extends GetxController {
       bodyFontSize--;
     }
   }
-
-
 }
-

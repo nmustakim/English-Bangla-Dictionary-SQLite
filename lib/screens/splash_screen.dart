@@ -10,16 +10,14 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   @override
   void initState() {
     super.initState();
     toHome();
   }
 
-
   void toHome() async {
-    await Future.delayed(const Duration(seconds:3), () {
+    await Future.delayed(const Duration(seconds: 3), () {
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (_) => const BottomBar()));
     });
@@ -39,9 +37,9 @@ class _SplashScreenState extends State<SplashScreen> {
             decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius:
-                BorderRadius.only(bottomLeft: Radius.circular(250))),
+                    BorderRadius.only(bottomLeft: Radius.circular(250))),
           ),
-           Positioned(
+          Positioned(
               top: 190,
               left: 40,
               child: SizedBox(
@@ -55,7 +53,16 @@ class _SplashScreenState extends State<SplashScreen> {
                       fontWeight: FontWeight.bold),
                 ),
               )),
-          const Positioned(left: 60,top: 250,child: Text('Meaning | Parts of speech | example',style: TextStyle(color:Colors.black,fontSize: 16,fontWeight: FontWeight.bold),))
+          const Positioned(
+              left: 60,
+              top: 250,
+              child: Text(
+                'Meaning | Parts of speech | example',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold),
+              ))
         ],
       ),
     );
