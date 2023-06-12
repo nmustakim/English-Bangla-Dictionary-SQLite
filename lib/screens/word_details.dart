@@ -76,27 +76,27 @@ class _WordDetailsState extends State<WordDetails> {
           ),
         ],
       ),
-      body: SafeArea(
-        child: Stack(
-          children: [
-            Container(
-              height: 300,
-              width: size.width,
-              color: kPrimaryColor,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    widget.dictionaryModel.word,
-                    style: TextStyle(
-                        fontSize: ctrl.titleFontSize.toDouble(),
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
-                  ),
-                ],
-              ),
+      body: Stack(
+        children: [
+          Container(
+            height: 300,
+            width: size.width,
+            color: kPrimaryColor,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  widget.dictionaryModel.word,
+                  style: TextStyle(
+                      fontSize: ctrl.titleFontSize.toDouble(),
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
+                ),
+              ],
             ),
-            Container(
+          ),
+          SingleChildScrollView(
+            child: Container(
               height: size.height,
               width: size.width,
               margin: const EdgeInsets.only(top: 200),
@@ -140,9 +140,9 @@ class _WordDetailsState extends State<WordDetails> {
                   ],
                 ),
               ),
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ),
     );
   }
