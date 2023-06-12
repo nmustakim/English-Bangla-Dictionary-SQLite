@@ -67,7 +67,7 @@ class _WordDetailsState extends State<WordDetails> {
                   widget.dictionaryModel.isFavorite = newIsFavorite;
                 });
               },
-              child: widget.dictionaryModel.isFavorite == 1
+              child: widget.dictionaryModel.isFavorite == 1 || widget.dictionaryModel.isFavorite == null
                   ? const Icon(Icons.favorite_border_sharp,
                       size: 40, color: Colors.red)
                   : const Icon(Icons.favorite_sharp,
