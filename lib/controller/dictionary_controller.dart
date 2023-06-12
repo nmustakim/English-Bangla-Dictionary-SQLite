@@ -2,20 +2,18 @@ import 'package:e2b_dictionary/database_helper/database_helper.dart';
 import 'package:e2b_dictionary/models/dictionary_model.dart';
 import 'package:get/get.dart';
 
-class DictionaryController extends GetxController
-{
-  var favorites = <DictionaryModel> [].obs;
-  var words = <DictionaryModel> [].obs;
-  var foundWords = <DictionaryModel> [].obs;
-  var foundFavWords = <DictionaryModel> [].obs;
+class DictionaryController extends GetxController {
+  var favorites = <DictionaryModel>[].obs;
+  var words = <DictionaryModel>[].obs;
+  var foundWords = <DictionaryModel>[].obs;
+  var foundFavWords = <DictionaryModel>[].obs;
 
-
-  getWords()async{
+  getWords() async {
     words.value = await DatabaseHelper().getWords();
   }
-  getFavorites()async{
-    favorites.addAll(words.where((p) =>p.isFavorite ==0 ));
 
+  getFavorites() async {
+    favorites.addAll(words.where((p) => p.isFavorite == 0));
   }
 
   void runWordFilter(String enteredString) {
@@ -25,7 +23,7 @@ class DictionaryController extends GetxController
     } else {
       result = words
           .where((element) =>
-          element.word.toLowerCase().contains(enteredString.toLowerCase()))
+              element.word.toLowerCase().contains(enteredString.toLowerCase()))
           .toList();
     }
     foundWords.value = result;
@@ -38,22 +36,9 @@ class DictionaryController extends GetxController
     } else {
       result = favorites
           .where((element) =>
-          element.word.toLowerCase().contains(enteredString.toLowerCase()))
+              element.word.toLowerCase().contains(enteredString.toLowerCase()))
           .toList();
     }
     foundFavWords.value = result;
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

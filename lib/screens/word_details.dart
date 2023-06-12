@@ -67,7 +67,8 @@ class _WordDetailsState extends State<WordDetails> {
                   widget.dictionaryModel.isFavorite = newIsFavorite;
                 });
               },
-              child: widget.dictionaryModel.isFavorite == 1 || widget.dictionaryModel.isFavorite == null
+              child: widget.dictionaryModel.isFavorite == 1 ||
+                      widget.dictionaryModel.isFavorite == null
                   ? const Icon(Icons.favorite_border_sharp,
                       size: 40, color: Colors.red)
                   : const Icon(Icons.favorite_sharp,
@@ -115,8 +116,9 @@ class _WordDetailsState extends State<WordDetails> {
                     ),
                     Text(
                       widget.dictionaryModel.meaning,
+                      maxLines: 2,
                       style: TextStyle(
-                          fontSize: ctrl.bodyFontSize.toDouble(),
+                          fontSize: ctrl.titleFontSize.toDouble(),
                           fontWeight: FontWeight.bold,
                           color: Colors.black),
                     ),
