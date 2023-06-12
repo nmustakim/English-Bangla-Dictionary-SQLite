@@ -123,7 +123,6 @@ class _DictionaryHomeState extends State<DictionaryHome> {
                                 height: 80,
                                 child: ListTile(
                                   onTap: () {
-                                    print(newWord.isFavorite);
                                     Get.to(() => WordDetails(
                                           dictionaryModel: newWord,
                                         ));
