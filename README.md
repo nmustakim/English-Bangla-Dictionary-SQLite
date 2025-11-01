@@ -100,6 +100,7 @@ English-Bangla-Dictionary-SQLite/
 │   └── dictionary.db
 ├── pubspec.yaml
 └── README.md
+
 Screenshots
 Here are some screenshots of the E2EB Dictionary app:
 Splash Screen
