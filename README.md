@@ -12,8 +12,8 @@ The author makes no guarantees regarding the accuracy, performance, or reliabili
 ---
 
 ## Overview
-E2B Dictionary is a comprehensive English dictionary application built with Flutter, designed to help users expand their vocabulary through an intuitive and visually appealing interface.  
-The app follows industry-standard **MVVM architecture** and implements **clean code principles**, making it maintainable and scalable.
+E2B Dictionary is a  English-Bangla dictionary application built with Flutter, designed to help users expand their vocabulary through an intuitive and visually appealing interface.  
+The app follows **MVVM architecture** and implements **clean code principles**, making it maintainable and scalable.
 
 ---
 
