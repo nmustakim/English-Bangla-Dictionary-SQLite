@@ -12,7 +12,7 @@ The author makes no guarantees regarding the accuracy, performance, or reliabili
 ---
 
 ## Overview
-E2B Dictionary is a  English-Bangla dictionary application built with Flutter, designed to help users expand their vocabulary through an intuitive and visually appealing interface.  
+E2B Dictionary is a English-Bangla dictionary application built with Flutter, designed to help users expand their vocabulary through an intuitive and visually appealing interface.  
 The app follows **MVVM architecture** and implements **clean code principles**, making it maintainable and scalable.
 
 ---
@@ -22,10 +22,10 @@ The app follows **MVVM architecture** and implements **clean code principles**, 
 - **Search:** Real-time search with instant filtering and suggestions.
 - **Favorites System:** Save words for quick access and offline learning.
 - **Word Details:**
-    - Word definition and meaning
-    - Parts of speech (noun, verb, adjective, etc.)
-    - Usage examples in context
-    - Favorite status management
+  - Word definition and meaning
+  - Parts of speech (noun, verb, adjective, etc.)
+  - Usage examples in context
+  - Favorite status management
 - **Offline First:** Works without internet connection.
 - **SQLite Database:** Efficient local data storage.
 - **State Management:** GetX for reactive state handling.
@@ -100,3 +100,10 @@ English-Bangla-Dictionary-SQLite/
 │   └── dictionary.db
 ├── pubspec.yaml
 └── README.md
+Screenshots
+Here are some screenshots of the E2EB Dictionary app:
+Splash Screen
+Home Screen
+Word Details
+Favorites
+Settings
