@@ -100,3 +100,5 @@ English-Bangla-Dictionary-SQLite/
 │   └── dictionary.db
 ├── pubspec.yaml
 └── README.md
+## Screenshots
+
