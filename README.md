@@ -103,8 +103,23 @@ English-Bangla-Dictionary-SQLite/
 
 Screenshots
 Here are some screenshots of the E2EB Dictionary app:
-Splash Screen
-Home Screen
-Word Details
-Favorites
-Settings
+
+https://github.com/nmustakim/English-Bangla-Dictionary-SQLite/blob/main/screenshots/Simulator%20Screenshot%20-%20iPhone%2015%20Pro%20Max%20-%202025-11-01%20at%2014.21.11.png
+
+https://github.com/nmustakim/English-Bangla-Dictionary-SQLite/blob/main/screenshots/Simulator%20Screenshot%20-%20iPhone%2015%20Pro%20Max%20-%202025-11-01%20at%2014.21.17.png
+
+https://github.com/nmustakim/English-Bangla-Dictionary-SQLite/blob/main/screenshots/Simulator%20Screenshot%20-%20iPhone%2015%20Pro%20Max%20-%202025-11-01%20at%2014.21.39.png
+
+https://github.com/nmustakim/English-Bangla-Dictionary-SQLite/blob/main/screenshots/Simulator%20Screenshot%20-%20iPhone%2015%20Pro%20Max%20-%202025-11-01%20at%2014.22.48.png
+
+https://github.com/nmustakim/English-Bangla-Dictionary-SQLite/blob/main/screenshots/Simulator%20Screenshot%20-%20iPhone%2015%20Pro%20Max%20-%202025-11-01%20at%2014.22.58.png
+
+https://github.com/nmustakim/English-Bangla-Dictionary-SQLite/blob/main/screenshots/Simulator%20Screenshot%20-%20iPhone%2015%20Pro%20Max%20-%202025-11-01%20at%2014.23.07.png
+
+https://github.com/nmustakim/English-Bangla-Dictionary-SQLite/blob/main/screenshots/Simulator%20Screenshot%20-%20iPhone%2015%20Pro%20Max%20-%202025-11-01%20at%2014.23.09.png
+
+https://github.com/nmustakim/English-Bangla-Dictionary-SQLite/blob/main/screenshots/Simulator%20Screenshot%20-%20iPhone%2015%20Pro%20Max%20-%202025-11-01%20at%2014.25.24.png
+
+
+
+
