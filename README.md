@@ -1,4 +1,4 @@
-# E2EB Dictionary - Modern Flutter Application
+# E2B Dictionary - Modern Flutter Application
 
 ## Disclaimer
 This project is created strictly for educational and learning purposes only.  
